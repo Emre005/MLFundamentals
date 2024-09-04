@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.impute import SimpleImputer
 from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
 
 veriler = pd.read_csv('eksikveriler.csv')
 
@@ -35,3 +36,10 @@ print(cinsiyet)
 
 sonuc3=pd.DataFrame(data=cinsiyet,index=range(22),columns=['cinsiyet'])
 print(sonuc)
+s=pd.concat([sonuc,sonuc2],axis=1)
+print(s)
+
+s2= pd.concat([s,sonuc3],axis=1)
+print(s2)
+
+x_train, x_test,y_train,y_test = train_test_split(s, sonuc3, test_size=0.33,random_state=0)
